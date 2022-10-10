@@ -1,0 +1,158 @@
+@import "./vant.scss"; //vant
+
+$vh: calc(100vh - var(--vh-offset, 0px));
+
+
+.gray{
+  color:#C1C1C1;
+}
+
+$numArr: 110, 50, 45, 40, 35, 30, 25, 20, 10, 15, 5;
+$positionArr: top, bottom, left, right;
+$classArr: t, b, l, r;
+
+@each $num in $numArr {
+  .m-#{$num} {
+    margin: #{$num}px;
+  }
+
+  .m-#{$num}-0 {
+    margin: #{$num}px 0;
+  }
+
+  .m-0-#{$num} {
+    margin: 0 #{$num}px;
+  }
+
+  .p-#{$num} {
+    padding: #{$num}px;
+  }
+
+  .p-#{$num}-0 {
+    padding: #{$num}px 0;
+  }
+
+  .p-0-#{$num} {
+    padding: 0 #{$num}px;
+  }
+
+  @each $position in $positionArr {
+    $index: index($positionArr, $position);
+    $class: nth($classArr, $index);
+
+    .m#{$class}-#{$num} {
+      margin-#{$position}: #{$num}+ "px";
+    }
+
+    .p#{$class}-#{$num} {
+      padding-#{$position}: #{$num}+ "px";
+    }
+  }
+}
+
+@each $Font in 10, 12, 14, 16, 15, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38,
+  40, 42, 48
+{
+  .font-#{$Font} {
+    font-size: #{$Font}px;
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.width100 {
+  width: -webkit-fill-available;
+  width: -moz-available;
+}
+
+.overflow-y {
+  overflow-y: scroll;
+}
+
+.u-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.u-flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-warp {
+  flex-wrap: wrap;
+}
+
+/* 垂直居中 */
+.u-col-center {
+  align-items: center;
+}
+
+/* 顶部对齐 */
+.u-col-top {
+  align-items: flex-start;
+}
+
+/* 底部对齐 */
+.u-col-bottom {
+  align-items: flex-end;
+}
+
+/* 左边对齐 */
+.u-row-left {
+  justify-content: flex-start;
+}
+
+/* 水平居中 */
+.u-row-center {
+  justify-content: center;
+}
+
+/* 右边对齐 */
+.u-row-right {
+  justify-content: flex-end;
+}
+
+/* 水平两端对齐，项目之间的间隔都相等 */
+.u-row-between {
+  justify-content: space-between;
+}
+
+/* 水平每个项目两侧的间隔相等，所以项目之间的间隔比项目与父元素两边的间隔大一倍 */
+.u-row-around {
+  justify-content: space-around;
+}
+
+.line-2-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis; //超过显示的限制的行数末尾用点表示
+  display: -webkit-box;
+  -webkit-line-clamp: 2; //多行在这里修改数字即可
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  /* 处理英文单词和英文句子太长断行问题 */
+  word-wrap: break-word;
+  // word-break:break-all;
+}
+
+.content-box {
+  height: $vh;
+  @extend .width100;
+  box-sizing: border-box;
+}
+
+//颜色
+body {
+  background: rgb(247, 248, 252);
+  font-size: 24px;
+  margin: 0;
+
+}
