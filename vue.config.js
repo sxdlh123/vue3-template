@@ -11,7 +11,7 @@ module.exports = {
   // lintOnSave: fasle, // eslint-loader 是否在保存的时候检查
   // assetsDir: "static", //放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   // 以多页模式构建应用程序。
-  publicPath: process.env.NODE_ENV === "production" ? "./" : "./",
+  publicPath: process.env.NODE_ENV === "production" ? "/panglong-years/" : "./",
   pages: undefined,
 
   // 生产环境是否生成 sourceMap 文件，一般情况不建议打开
