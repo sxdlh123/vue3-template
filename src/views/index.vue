@@ -338,11 +338,4 @@ function startLoading() {
   opacity: 0.6;
   padding: 7px 17px;
 }
-//@media screen and (orientation: portrait) {
-//  /*竖屏样式*/
-//  .content {
-//    transform-origin: 0 0;
-//    transform: rotateZ(90deg) translateY(-100%);
-//  }
-//}
 </style>

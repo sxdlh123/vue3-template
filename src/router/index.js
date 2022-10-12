@@ -15,6 +15,11 @@ const routes = [
     name: "简介",
     component: () => import("@/views/previewImg"),
   },
+  {
+    path: "/video",
+    name: "视频",
+    component: () => import("@/views/video"),
+  },
 ];
 
 const router = createRouter({
