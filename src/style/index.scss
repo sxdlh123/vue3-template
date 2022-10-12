@@ -2,9 +2,8 @@
 
 $vh: calc(100vh - var(--vh-offset, 0px));
 
-
-.gray{
-  color:#C1C1C1;
+.gray {
+  color: #c1c1c1;
 }
 
 $numArr: 110, 50, 45, 40, 35, 30, 25, 20, 10, 15, 5;
@@ -143,8 +142,6 @@ $classArr: t, b, l, r;
   // word-break:break-all;
 }
 
-
-
 //颜色
 body {
   background: rgb(247, 248, 252);
@@ -152,14 +149,13 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  transform-origin: 0 0;
-  transform: rotateZ(90deg) translateY(-100%);
+
 }
 
-//@media screen and (orientation: portrait) {
-//  /*竖屏样式*/
-//  body {
-//    transform-origin: 0 0;
-//    transform: rotateZ(90deg) translateY(-100%);
-//  }
-//}
+@media screen and (orientation: portrait) {
+  /*竖屏样式*/
+  body {
+    transform-origin: 0 0;
+    transform: rotateZ(90deg) translateY(-100%);
+  }
+}

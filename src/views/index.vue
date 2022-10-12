@@ -36,9 +36,14 @@
         </template>
       </van-circle>
 
-      <van-button @click="play()" v-if="step === 'guide'">
-        播放沙画视频
-      </van-button>
+      <van-icon
+        :name="require('@@/img/play.png')"
+        @click="play()"
+        class="play"
+        size="95"
+        v-if="step === 'guide'"
+      >
+      </van-icon>
       <!--      活动图-->
       <img
         v-if="step === 'activity'"
@@ -91,8 +96,9 @@ import MuiPlayer from "mui-player";
 import "mui-player/dist/mui-player.min.css";
 import { showDialog } from "vant";
 import load from "@/store/load";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
+const route = useRoute();
 //预加载图片资源
 const imgLoad = load();
 
@@ -107,7 +113,7 @@ const fontShow = ref("none"); //底部控件
 const mask_index = ref(10); //遮罩层级
 
 // 步骤条 loading:加载 guide:引导,activity:活动首页，street:各个街道,
-const step = ref("activity");
+const step = ref("loading");
 
 //闪点数组
 const lightList = [
@@ -139,13 +145,19 @@ const hotList = [
   { title: "双龙街", top: "58.3%", left: "58.3%" },
   { title: "滇源街", top: "35.2%", left: "61.5%" },
 ];
-const previewImg = ref("");
+//检测是否到活动页
+onBeforeMount(() => {
+  const status = route.query;
+  if (!!status.activity) {
+    step.value = "activity";
+  }
+});
 onMounted(() => {
   //开启进度条加载
   mp.value = new MuiPlayer({
     container: "#mui-player",
     src: "https://rmt-panlong-hz-file-vcdn.kmzscc.com/panlongrongmei/panlong/2022/10/09/FaZxmXtC6Wu45.mp4",
-    autoOrientaion: true, //全屏时否自动切换方向
+    autoOrientaion: false, //全屏时否自动切换方向
     objectFit: "cover",
     pageHead: false,
     videoAttribute: [
@@ -235,6 +247,8 @@ function startLoading() {
 </script>
 <style lang="scss" scoped>
 .content {
+  width: 100vh;
+  height: 100vw;
   #mui-player {
     width: 100% !important;
     height: 100% !important;
@@ -250,6 +264,20 @@ function startLoading() {
     background-size: 100% 100%;
     opacity: v-bind(opacity);
     transition: all ease 1.5s;
+  }
+  .play {
+    position: fixed;
+    top: 16%;
+    right: 23%;
+    animation: setAnim 1s linear infinite;
+  }
+  @keyframes setAnim {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 }
 
@@ -310,4 +338,11 @@ function startLoading() {
   opacity: 0.6;
   padding: 7px 17px;
 }
+//@media screen and (orientation: portrait) {
+//  /*竖屏样式*/
+//  .content {
+//    transform-origin: 0 0;
+//    transform: rotateZ(90deg) translateY(-100%);
+//  }
+//}
 </style>
